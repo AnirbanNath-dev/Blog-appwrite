@@ -19,9 +19,9 @@ export class AuthService {
 
         try {
 
-            const userAccount = await this.account.create(ID.unique() , email,password , name)
+            const userAccount = await this.account.create(ID.unique() , email , password , name)
             if(userAccount){
-                
+                return this.login({email , password})
             }
             else{
                 return userAccount
@@ -35,12 +35,31 @@ export class AuthService {
 
     async login({email, password}){
         try {
-            await this.
+            return await this.account.createEmailSession(email , password)
         } catch (error) {
-            
+            throw error
         }
     }
 
+    async getAccount(){
+        try {
+            return await this.account.get()
+        } catch (error) {
+            console.log("Appriwrite server getAccount error")
+        }
+
+
+        return null
+    }
+
+    async logout(){
+        try {
+            return await this.account.deleteSessions()
+        } catch (error) {
+            throw error
+        }
+    }
+    
 }
 
 const authService = new AuthService();
