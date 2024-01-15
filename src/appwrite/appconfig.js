@@ -124,6 +124,12 @@ export class Service {
             return false
         }
     }
+
+    getFilePreview(fileId){
+        return this.storage.getFilePreview(
+            config.appwriteBucketId , fileId
+        )
+    }
 }
 
 const service = new Service();
