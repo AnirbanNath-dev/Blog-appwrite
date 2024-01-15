@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import authService from './appwrite/auth'
 import { login, logout } from "./store/authSlice"
+import { Footer } from "./components"
 
 function App() {
 
@@ -25,11 +26,12 @@ function App() {
   },[])
 
 
-  return !loading ? (
-    <>
-      hello
-    </>
-  ) : null
+  return !loading && (
+    <div>
+    
+      <Footer/>
+    </div>
+  )
 }
 
 export default App
